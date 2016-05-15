@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>widget</title>
+	<link rel="stylesheet" type="text/css" href="css/modal.css">
+</head>
+<body>
+	<button id="show">show</button>
+	<!-- <div class="m-modal">
+		<header>
+			<h3>welcome</h3>
+			<i class="f-close">X</i>
+		</header>
+		<article>
+			<p>this is a modal</p>
+		</article>
+		<footer>
+			<input class="f-comfirm" type="button" value="confirm"/>
+		</footer>
+	</div>
+	<div class="m-modal_mask"></div> -->
+	<script type="text/javascript" src="js/sea.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript">
+		seajs.config({
+			'base': './',
+			'alias': {
+				'main': 'js/main.js',
+				'modal': 'js/modal.js',
+				'utility': 'js/utility.js',
+				'widget': 'js/widget.js'
+			}
+		});
+		seajs.use('main');
+	</script>
+</body>
+</html>
