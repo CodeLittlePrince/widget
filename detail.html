@@ -1,0 +1,115 @@
+<!-- 专题detail -->
+<include file="/Public/header" />
+
+<?php $subnav = 'special'; ?>
+<include file="/Home/home" />
+
+<include file="Detail/header" />
+<div class="container">
+    <div class="row">
+        <div class="col-big _box l-specialDetailMain">
+            <ul class="mb50">
+                <?php $publish_id = 0; /* 作为评论组件的id */?>
+                <volist name='special.recommend' id='post'>
+
+                    <li class="l-specialDetailBlock">
+
+                        <!-- COS的块 -->
+                        <if condition="$post['type'] eq 'cos'"><include file="Detail/coser" /></if>
+
+                        <!-- illust的块 -->
+                        <if condition="$post['type'] eq 'illust'"><include file="Detail/illust" /></if>
+
+                        <!-- 写作的块 -->
+                        <if condition="$post['type'] eq 'novel'"><include file="Detail/novel" /></if>
+
+                        <!-- 帖子的块 -->
+                        <if condition="$post['type'] eq 'group_post'"><include file="Detail/groupPost" /></if>
+
+                        <!-- 讨论的块 -->
+                        <if condition="$post['type'] eq 'group'"><include file="Detail/group" /></if>
+
+                        <!-- 日常的块 -->
+                        <if condition="$post['type'] eq 'daily'"><include file="Detail/daily" /></if>
+
+                        <!-- 圈子的块 -->
+                        <if condition="$post['type'] eq 'circle'"><include file="Detail/circle" /></if>
+
+                        <!-- 达人的块 -->
+                        <if condition="$post['type'] eq 'user'"><include file="Detail/user" /></if>
+
+                        <!-- 物语的块 -->
+                        <if condition="$post['type'] eq 'shop'"><include file="Detail/shop" /></if>
+                    </li>
+                </volist>
+            </ul>
+
+            <!-- 你可能感兴趣的专题 -->
+            <notempty name="interestSpecials">
+                <include file="Detail/mayInterst" />
+            </notempty>
+        </div>
+
+        <aside class="col-small mt30">
+            <div id="js-sticky">
+                <div class="mb30">
+                    <!-- 专题推荐 -->
+                    <include file="Detail/recSpecial" />
+                </div>
+
+                <!-- 分享该专题 -->
+                <div class="hdCard _box">
+                    <header class="hdCard__hd">
+                        <h3 class="hdCard__tit">{:L('分享该专题')}</h3>
+                    </header>
+                    <include file="Detail/shareSpecial" />
+                </div>
+            </div>
+        </aside>
+
+        <script type="text/javascript">
+            $(function() {
+                seajs.use(['sticky'], function() {
+                    $('#js-sticky').sticky({
+                        topSpacing: 0,
+                        getWidthFrom: ".col-small"
+                    });
+                });
+            });
+        </script>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var SPECIAL_ID = "{$special.special_id}";
+    var SPECIAL_TITLE = '{$special.title}';
+    var urlpicS = 'http://thumb.bcyimg.com/special/thumbevent/' + SPECIAL_ID,
+        titleS = '分享了来自半次元的专题[' + SPECIAL_TITLE + ']~O(∩_∩)O~[围观戳]';
+
+    $(function() {
+        seajs.use(__uri('/Public/JS/group/special.detail.js'));
+        seajs.use(__uri('/Public/JS/module/list.TuijianDing.js'));
+        seajs.use(__uri('/Public/JS/module/search.work.js'));
+
+        seajs.use(['link'], function(link) {
+            link.init('.js-specialGroupContent');
+        });
+    });
+
+</script>
+
+<!-- 大的已关注 -->
+<script id="tpl-specialFollow" type="text/template">
+    <button class="_btn _btn--icon _btn--gray _btn--no-hover _btn--secondary _btn--block _btn--l">${text}</button>
+</script>
+<!-- 小的已关注 -->
+<script id="tpl-specialFollowSm" type="text/template">
+    <button class="l-right _btn _btn--gray _btn--no-hover _btn--secondary _btn--sm mt11">${text}</button>
+</script>
+<script id="tpl-hotcoreWorkUnfollow" type="text/template">
+    <button class="_btn _btn--icon _btn--gray _btn--no-hover _btn--secondary _btn--block _btn--l">
+        {:L('已订阅')}
+    </button>
+</script>
+
+<include file="/Public/footer" />

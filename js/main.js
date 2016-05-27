@@ -12,7 +12,6 @@ define(function(require, exports, module){
 				width: 350,
 				content: 'alert success',
 				title: 'title success',
-				skin: 'm-modal_sk_a',
 				hasMask: true
 			});
 			modal.on('confirm',function(){console.log('confirm'); isShowed = false;});
